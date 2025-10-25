@@ -1,7 +1,7 @@
 import pandas as pd
 import os
 
-url = "https://raw.githubusercontent.com/mwaskom/seaborn-data/master/iris.csv"
+url = "https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv"
 df = pd.read_csv(url)
 
 os.makedirs('data', exist_ok=True)
