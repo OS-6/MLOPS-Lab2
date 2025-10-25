@@ -1,5 +1,5 @@
 import pandas as pd
-from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
 from sklearn.metrics import accuracy_score, confusion_matrix
 import json
 import seaborn as sns
@@ -11,7 +11,7 @@ X = df.iloc[:, :-1]
 y = df.iloc[:, -1]
 
 # Train model (ensure you change this for other branches)
-model = LogisticRegression(random_state=42, max_iter=2000)
+model = SVC(random_state=42)
 model.fit(X, y)
 preds = model.predict(X)
 
