@@ -2,33 +2,52 @@ schema: '2.0'
 stages:
   get_data:
     cmd: python get_data.py
-    deps:
-    - path: get_data.py
-      hash: md5
-      md5: ffd46ad8cde0c3210e3ebc7cf4a0e8a7
-      size: 220
     outs:
-    - path: data/data_raw.csv
+    - path: data/titanic_raw.csv
       hash: md5
-      md5: 500a0acbd112b7c512929eac892f9864
-      size: 4009
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
   train:
     cmd: python train.py
     deps:
-    - path: data/data_raw.csv
+    - path: data/processed/test.csv
       hash: md5
-      md5: 500a0acbd112b7c512929eac892f9864
-      size: 4009
+      md5: 1ec651dc1217af68865149671b886f73
+      size: 6585
+    - path: data/processed/train.csv
+      hash: md5
+      md5: ee10e30756153a9b0023624ce9ff08d9
+      size: 26159
     - path: train.py
       hash: md5
-      md5: 8bba987d57883c8b13274c92e9ac840c
-      size: 925
+      md5: 2c2c0d1988e97e24071c29a8bcd9f984
+      size: 1225
     outs:
     - path: confusion_matrix.png
       hash: md5
-      md5: c78d75e32fcccc58648577c0c1a9fe8c
-      size: 21304
+      md5: d654aba51918cb387f765ca29517a263
+      size: 14977
     - path: metrics.json
       hash: md5
-      md5: 484dae7eea13316cdc4bcf54825b3e80
+      md5: 37a314f65017c2f513a337cb24eed721
       size: 32
+  preprocess:
+    cmd: python preprocess.py
+    deps:
+    - path: data/titanic_raw.csv
+      hash: md5
+      md5: 2e0e4b0aeeb40b47ee0915eba73534bc
+      size: 62894
+    - path: preprocess.py
+      hash: md5
+      md5: 7393adfbc90b15f223434a4c6c1c9d7b
+      size: 963
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 1ec651dc1217af68865149671b886f73
+      size: 6585
+    - path: data/processed/train.csv
+      hash: md5
+      md5: ee10e30756153a9b0023624ce9ff08d9
+      size: 26159
